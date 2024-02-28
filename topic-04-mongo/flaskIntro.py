@@ -15,8 +15,8 @@ app = Flask(__name__)
 
 @app.route("/data/movies/scifi")
 def get_data_movies_scifi():
-       # with open("classic_sci_fi_movies.json", "r") as f:
-       #         data =json.load(f) 
+        # with open("classic_sci_fi_movies.json", "r") as f:
+        #         data =json.load(f) 
         # open a scifi collection
         scifi_collection = movie_db.scifi_collection
         data = list(scifi_collection.find({}))
@@ -25,7 +25,7 @@ def get_data_movies_scifi():
         return jsonify(data)
 
 @app.route('/')
-def serve_index(path):
+def serve_index():
         return send_from_directory('.',"index.html")
 
 @app.route('/<path:path>')
