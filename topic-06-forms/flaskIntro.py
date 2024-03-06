@@ -16,5 +16,8 @@ def post_hello():
                 "password":password
         }
         return render_template("hello.html",data=data)
+        #ususally we use a redirect here instead of render_template
+        #import redirect up top^ with iother imports
+        #redirect('...')
 
 #run flask --app flaskIntro run 
