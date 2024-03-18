@@ -45,6 +45,18 @@ def post_quotes():
                 else:
                         return "Both author and quote are required"
 
+@app.route("/edit", methods=["GET"])
+@app.route("/edit/<id>", methods=["GET"])
+def get_edit_quotes(id=None):
+        if id:  
+                #open collection
+                quotes_collection = quotes_db.quotes_collection
+                #find quote by ObjectId
+                data = quotes_collection.find_one({"_id": ObjectId(id)})
+                
+        return render_template("/edit.html", data=data)
+
+
 @app.route("/delete", methods=["GET"])
 @app.route("/delete/<id>", methods=["GET"]) 
 def get_delete(id=None):
