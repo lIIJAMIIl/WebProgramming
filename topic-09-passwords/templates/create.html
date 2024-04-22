@@ -1,0 +1,29 @@
+<html>
+
+<body>
+    <h1>Add Quotes Here</h1>
+    <form action="/create" method="POST">
+        <table>
+            <tr>
+                <td>
+                    <label for="text">Quote</label>
+                </td>
+                <td>
+                    <textarea type="text" id="text" name="text" placeholder="Enter Quote" cols="40" rows="5"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="author">Author</label>
+                </td>
+                <td>
+                    <input type="text" id="author" name="author" placeholder="Enter Author" />
+                </td>
+            </tr>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="/"><button>Cancel</button></a>
+</body>
+
+</html>

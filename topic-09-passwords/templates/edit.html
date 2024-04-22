@@ -3,13 +3,13 @@
 <body>
     <h1>Edit Your Quotes Here</h1>
     <form action="/edit" method="POST">
-        <input type="hidden" id="_id" name="_id" value="{{data[" _id"]}}" />
+        <input type="hidden" id="_id" name="_id" value="{{data["_id"]}}" />
         <tr>
             <td>
-                <label for="text" style="display: block;">Quote</label>
+                <label for="quote" style="display: block;">Quote</label>
             </td>
             <td>
-                <textarea id="text" name="text" cols="40" rows="5">{{data["text"]}}</textarea>
+                <textarea type="text" id="quote" name="quote" cols="40" rows="5">{{data["text"]}}</textarea>
             </td>
         </tr>
         <tr>
@@ -18,7 +18,15 @@
             </td>
             <td>
                 <input style="display: block;" type="text" id="author" name="author" placeholder="Author"
-                    value="{{data['author']}}" />
+                    value="{{data["author"]}}" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="display: block;" for="public">Make Quote Public?</label>
+            </td>
+            <td>
+                <input type="checkbox" id="public" name="public" />
             </td>
         </tr>
         </table>
