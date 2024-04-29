@@ -156,12 +156,13 @@ def get_quotes():
         quotes_collection = quotes_db.quotes_collection
         data = list(quotes_collection.find({"owner": user}))
         public_quotes = list(quotes_collection.find({"public": True}))
+        favorite = list(quotes_collection.find({"favorite": True}))
         #set item id and object id for each quote of the owner's and public quotes
         for item in data + public_quotes:
                 item["_id"] = str(item["_id"])
                 item["object"] = ObjectId(item["_id"])
         #render the quotes page with the data retrieved from above
-        html = render_template("quotes.html", data=data, number_of_visits=number_of_visits, session_id=session_id, user=user)
+        html = render_template("quotes.html", data=data, number_of_visits=number_of_visits, session_id=session_id, user=user, favorite=favorite)
         response = make_response(html)
         response.set_cookie("number_of_visits", str(number_of_visits + 1))
         response.set_cookie("session_id", str(session_id))
@@ -206,11 +207,12 @@ def post_quotes():
         text = request.form.get("text", "")
         author = request.form.get("author", "")
         public = request.form.get("public", "") == "on"
+        favorite = request.form.get("favorite", "") == "on"
         if text != "" and author != "":
                 #opening quotes db
                 quotes_collection = quotes_db.quotes_collection
                 #inserting quote into the quotes db
-                quotes_data = {"owner": user, "text": text, "author": author, "public": public}
+                quotes_data = {"owner": user, "text": text, "author": author, "public": public, "favorite": favorite}
                 quotes_collection.insert_one(quotes_data)
         return redirect("/quotes")
 
@@ -265,6 +267,9 @@ def post_edit():
         # Return to quotes page
         return redirect("/quotes")
 
+##################
+# Delete User Quotes
+##################
 
 @app.route("/delete", methods=["GET"])
 @app.route("/delete/<id>", methods=["GET"]) 
